@@ -62,9 +62,11 @@ Shut down a worker
         if not self.is_worker(workername):
             raise web.HTTPError(404, "Unknown worker '%s'" % workername)
 
-        logger.info("Shutting down '%s' worker", workername)
-        self.capp.control.broadcast('shutdown', destination=[workername])
-        self.write(dict(message="Shutting down!"))
+        # logger.info("Shutting down '%s' worker", workername)
+        # self.capp.control.broadcast('shutdown', destination=[workername])
+        # self.write(dict(message="Shutting down!"))
+
+        self.write(dict(message="You do not have permission!!!"))
 
 
 class WorkerPoolRestart(ControlHandler):
@@ -102,19 +104,20 @@ Restart worker's pool
         if not self.is_worker(workername):
             raise web.HTTPError(404, "Unknown worker '%s'" % workername)
 
-        logger.info("Restarting '%s' worker's pool", workername)
-        response = self.capp.control.broadcast(
-            'pool_restart', arguments={'reload': False},
-            destination=[workername], reply=True)
-        if response and 'ok' in response[0][workername]:
-            self.write(dict(
-                message="Restarting '%s' worker's pool" % workername))
-        else:
-            logger.error(response)
-            self.set_status(403)
-            self.write("Failed to restart the '%s' pool: %s" % (
-                workername, self.error_reason(workername, response)
-            ))
+        # logger.info("Restarting '%s' worker's pool", workername)
+        # response = self.capp.control.broadcast(
+        #     'pool_restart', arguments={'reload': False},
+        #     destination=[workername], reply=True)
+        # if response and 'ok' in response[0][workername]:
+        #     self.write(dict(
+        #         message="Restarting '%s' worker's pool" % workername))
+        # else:
+        #     logger.error(response)
+        #     self.set_status(403)
+        #     self.write("Failed to restart the '%s' pool: %s" % (
+        #         workername, self.error_reason(workername, response)
+        #     ))
+        self.write(dict(message="You do not have permission!!!"))
 
 
 class WorkerPoolGrow(ControlHandler):
@@ -168,7 +171,7 @@ Grow worker's pool
         #     self.write("Failed to grow '%s' worker's pool: %s" % (
         #         workername, self.error_reason(workername, response)))
 
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
 
 
 class WorkerPoolShrink(ControlHandler):
@@ -223,7 +226,7 @@ Shrink worker's pool
         #         workername, self.error_reason(workername, response)
         #     ))
 
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
 
 
 class WorkerPoolAutoscale(ControlHandler):
@@ -284,7 +287,7 @@ Autoscale worker pool
         #         workername, self.error_reason(workername, response)
         #     ))
 
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
 
 
 class WorkerQueueAddConsumer(ControlHandler):
@@ -339,7 +342,7 @@ Start consuming from a queue
         #     self.write("Failed to add '%s' consumer to '%s' worker: %s" % (
         #         queue, workername, self.error_reason(workername, response)
         #     ))
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
 
 
 class WorkerQueueCancelConsumer(ControlHandler):
@@ -395,7 +398,7 @@ Stop consuming from a queue
         #         "Failed to cancel '%s' consumer from '%s' worker: %s" % (
         #             queue, workername, self.error_reason(workername, response)
         #         ))
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
 
 
 class TaskRevoke(ControlHandler):
@@ -436,7 +439,7 @@ Revoke a task
         # signal = self.get_argument('signal', default='SIGTERM', type=str)
         # self.capp.control.revoke(taskid, terminate=terminate, signal=signal)
         # self.write(dict(message="Revoked '%s'" % taskid))
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
 
 
 class TaskTimout(ControlHandler):
@@ -497,7 +500,7 @@ Change soft and hard time limits for a task
         #     self.set_status(403)
         #     self.write("Failed to set timeouts: '%s'" %
         #                self.error_reason(taskname, response))
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
 
 
 class TaskRateLimit(ControlHandler):
@@ -555,4 +558,4 @@ Change rate limit for a task
         #     self.set_status(403)
         #     self.write("Failed to set rate limit: '%s'" %
         #                self.error_reason(taskname, response))
-        self.write("You do not have permission for this action")
+        self.write("You do not have permission!!!")
