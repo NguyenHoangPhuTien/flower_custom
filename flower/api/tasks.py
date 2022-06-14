@@ -368,7 +368,6 @@ Abort a running task
         # result.abort()
 
         # self.write(dict(message="Aborted '%s'" % taskid))
-        
         self.write("You do not have permission!!!")
 
 

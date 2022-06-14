@@ -117,6 +117,7 @@ Restart worker's pool
         #     self.write("Failed to restart the '%s' pool: %s" % (
         #         workername, self.error_reason(workername, response)
         #     ))
+        self.set_status(403)
         self.write(dict(message="You do not have permission!!!"))
 
 
@@ -170,7 +171,7 @@ Grow worker's pool
         #     self.set_status(403)
         #     self.write("Failed to grow '%s' worker's pool: %s" % (
         #         workername, self.error_reason(workername, response)))
-
+        self.set_status(403)
         self.write("You do not have permission!!!")
 
 
@@ -225,7 +226,7 @@ Shrink worker's pool
         #     self.write("Failed to shrink '%s' worker's pool: %s" % (
         #         workername, self.error_reason(workername, response)
         #     ))
-
+        self.set_status(403)
         self.write("You do not have permission!!!")
 
 
@@ -286,7 +287,7 @@ Autoscale worker pool
         #     self.write("Failed to autoscale '%s' worker: %s" % (
         #         workername, self.error_reason(workername, response)
         #     ))
-
+        self.set_status(403)
         self.write("You do not have permission!!!")
 
 
@@ -342,6 +343,7 @@ Start consuming from a queue
         #     self.write("Failed to add '%s' consumer to '%s' worker: %s" % (
         #         queue, workername, self.error_reason(workername, response)
         #     ))
+        self.set_status(403)
         self.write("You do not have permission!!!")
 
 
@@ -398,6 +400,7 @@ Stop consuming from a queue
         #         "Failed to cancel '%s' consumer from '%s' worker: %s" % (
         #             queue, workername, self.error_reason(workername, response)
         #         ))
+        self.set_status(403)
         self.write("You do not have permission!!!")
 
 
@@ -439,6 +442,7 @@ Revoke a task
         # signal = self.get_argument('signal', default='SIGTERM', type=str)
         # self.capp.control.revoke(taskid, terminate=terminate, signal=signal)
         # self.write(dict(message="Revoked '%s'" % taskid))
+        self.set_status(403)
         self.write("You do not have permission!!!")
 
 
@@ -500,6 +504,7 @@ Change soft and hard time limits for a task
         #     self.set_status(403)
         #     self.write("Failed to set timeouts: '%s'" %
         #                self.error_reason(taskname, response))
+        self.set_status(403)
         self.write("You do not have permission!!!")
 
 
@@ -558,4 +563,5 @@ Change rate limit for a task
         #     self.set_status(403)
         #     self.write("Failed to set rate limit: '%s'" %
         #                self.error_reason(taskname, response))
+        self.set_status(403)
         self.write("You do not have permission!!!")
