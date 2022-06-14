@@ -1,10 +1,10 @@
 FROM python:alpine
 
 # Get latest root certificates
-RUN apk add --no-cache ca-certificates tzdata && update-ca-certificates
+RUN apk add --no-cache ca-certificates tzdata git && update-ca-certificates
 
 # Install the required packages
-RUN pip install -e .
+RUN pip install git+https://github.com/NguyenHoangPhuTien/flower_custom.git@main
 RUN pip install --no-cache-dir redis
 
 # PYTHONUNBUFFERED: Force stdin, stdout and stderr to be totally unbuffered. (equivalent to `python -u`)

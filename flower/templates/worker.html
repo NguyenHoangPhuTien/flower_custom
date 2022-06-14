@@ -69,40 +69,6 @@
                   </table>
                 </div>
 
-                <div class="span6">
-                  <div class="form-horizontal">
-                    <fieldset>
-                      <legend>Pool size control</legend>
-                      <div class="control-group">
-                        <label class="control-label" for="pool-size">Pool size</label>
-                        <div class="controls">
-                          <div class="input-append">
-                            <select class="input-mini" id="pool-size">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                            <!-- <button class="btn" type="button" onclick="flower.on_pool_grow(event)">Grow</button>
-                            <button class="btn" type="button" onclick="flower.on_pool_shrink(event)">Shrink</button> -->
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- <div class="control-group">
-                        <label class="control-label" for="min-autoscale">Min/Max autoscale</label>
-                        <div class="controls">
-                          <div class="input-append">
-                            <input class="input-mini" id="min-autoscale" size="6" type="text">
-                            <input class="input-mini" id="max-autoscale" size="6" type="text">
-                            <button class="btn" type="button" onclick="flower.on_pool_autoscale(event)">Apply</button>
-                          </div>
-                        </div>
-                      </div> -->
-                    </fieldset>
-                  </div>
-                </div>
               </div>
 
               {% if worker['stats'].get('autoscaler', None) %}
