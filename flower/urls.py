@@ -27,7 +27,7 @@ settings = dict(
 
 handlers = [
     # App
-    url(r"/", DashboardView, name='main'),
+    url(r"", DashboardView, name='main'),
     url(r"/dashboard", DashboardView, name='dashboard'),
     url(r"/worker/(.+)", WorkerView, name='worker'),
     url(r"/task/(.+)", TaskView, name='task'),
