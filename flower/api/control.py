@@ -65,7 +65,7 @@ Shut down a worker
         # logger.info("Shutting down '%s' worker", workername)
         # self.capp.control.broadcast('shutdown', destination=[workername])
         # self.write(dict(message="Shutting down!"))
-
+        self.set_status(403)
         self.write(dict(message="You do not have permission!!!"))
 
 
